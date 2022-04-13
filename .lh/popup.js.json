@@ -1,0 +1,282 @@
+{
+    "sourceFile": "popup.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 66,
+            "patches": [
+                {
+                    "date": 1649881609286,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1649882211957,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,4 +38,5 @@\n         });\n     }\n });\n \n+\n"
+                },
+                {
+                    "date": 1649882218921,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,5 +38,5 @@\n         });\n     }\n });\n \n-\n+document.ad\n"
+                },
+                {
+                    "date": 1649882233197,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,5 +38,5 @@\n         });\n     }\n });\n \n-document.ad\n+document.getElementById(\"OpenInSourceGraph\").addEventListener\n"
+                },
+                {
+                    "date": 1649882239503,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,5 +38,5 @@\n         });\n     }\n });\n \n-document.getElementById(\"OpenInSourceGraph\").addEventListener\n+document.getElementById(\"OpenInSourceGraph\").addEventListener(\"click\", () =>)\n"
+                },
+                {
+                    "date": 1649882248647,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,5 +38,7 @@\n         });\n     }\n });\n \n-document.getElementById(\"OpenInSourceGraph\").addEventListener(\"click\", () =>)\n+document.getElementById(\"OpenInSourceGraph\").addEventListener(\"click\", async () => {\n+\n+})\n"
+                },
+                {
+                    "date": 1649882256095,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,7 +38,13 @@\n         });\n     }\n });\n \n+async function getCurrentTab() {\n+    let queryOptions = { active: true, currentWindow: true }\n+    let [tab] = await chrome.tabs.query(queryOptions)\n+    return tab\n+  }\n+  \n document.getElementById(\"OpenInSourceGraph\").addEventListener(\"click\", async () => {\n \n-})\n+});\n"
+                },
+                {
+                    "date": 1649882266978,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,50 +1,55 @@\n-document.getElementById(\"runCode\").addEventListener('click', async () => {\n-    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });\n+document.getElementById('runCode').addEventListener('click', async () => {\n+  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n \n-    if (tab.url.includes(\"teamblind.com\")) {\n-        chrome.scripting.executeScript({\n-            target: { tabId: tab.id },\n-            function: async () => {\n-                let sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));\n+  if (tab.url.includes('teamblind.com')) {\n+    chrome.scripting.executeScript({\n+      target: { tabId: tab.id },\n+      function: async () => {\n+        let sleep = (delay) =>\n+          new Promise((resolve) => setTimeout(resolve, delay))\n \n-                let findViewMoreBtn = () => {\n-                    let buttons = [...document.getElementsByClassName(\"btn_more\")].filter((btn) => btn.innerText.includes(\"+ View more comments...\"));\n-                    if (buttons.length != 1) {\n-                        return null\n-                    }\n-                    return buttons[0]\n-                }\n+        let findViewMoreBtn = () => {\n+          let buttons = [\n+            ...document.getElementsByClassName('btn_more'),\n+          ].filter((btn) => btn.innerText.includes('+ View more comments...'))\n+          if (buttons.length != 1) {\n+            return null\n+          }\n+          return buttons[0]\n+        }\n \n-                console.log(\"Expanding comments...\");\n-                let times = 0;\n-                while (true) {\n-                    let btn = findViewMoreBtn();\n-                    if (btn == null) {\n-                        break;\n-                    }\n-                    btn.click();\n-                    times += 1;\n-                    await sleep(2500);\n-                }\n-                console.log(`Finished expanding comments ${times} time(s)!`);\n-            },\n-        });\n-    } else {\n-        chrome.scripting.executeScript({\n-            target: { tabId: tab.id },\n-            function: async () => {\n-                console.log(\"This code is only active on teamblind.com.\");\n-            },\n-        });\n-    }\n-});\n+        console.log('Expanding comments...')\n+        let times = 0\n+        while (true) {\n+          let btn = findViewMoreBtn()\n+          if (btn == null) {\n+            break\n+          }\n+          btn.click()\n+          times += 1\n+          await sleep(2500)\n+        }\n+        console.log(`Finished expanding comments ${times} time(s)!`)\n+      },\n+    })\n+  } else {\n+    chrome.scripting.executeScript({\n+      target: { tabId: tab.id },\n+      function: async () => {\n+        console.log('This code is only active on teamblind.com.')\n+      },\n+    })\n+  }\n+})\n \n async function getCurrentTab() {\n-    let queryOptions = { active: true, currentWindow: true }\n-    let [tab] = await chrome.tabs.query(queryOptions)\n-    return tab\n-  }\n-  \n-document.getElementById(\"OpenInSourceGraph\").addEventListener(\"click\", async () => {\n+  let queryOptions = { active: true, currentWindow: true }\n+  let [tab] = await chrome.tabs.query(queryOptions)\n+  return tab\n+}\n \n-});\n+document\n+  .getElementById('OpenInSourceGraph')\n+  .addEventListener('click', async () => {\n+      \n+  })\n"
+                },
+                {
+                    "date": 1649882276413,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,6 +50,6 @@\n \n document\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n-      \n+      let tab\n   })\n"
+                },
+                {
+                    "date": 1649882285655,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,6 +50,7 @@\n \n document\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n-      let tab\n+      let tab = getCurrentTab()\n+      console.log(ta)\n   })\n"
+                },
+                {
+                    "date": 1649882294360,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,7 +50,7 @@\n \n document\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n-      let tab = getCurrentTab()\n-      console.log(ta)\n+    let tab = getCurrentTab()\n+    console.log(tab)\n   })\n"
+                },
+                {
+                    "date": 1649882312038,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,7 +50,7 @@\n \n document\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n-    let tab = getCurrentTab()\n+    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n     console.log(tab)\n   })\n"
+                },
+                {
+                    "date": 1649882341008,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,6 +51,6 @@\n document\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n-    console.log(tab)\n+    console.log(tab);\n   })\n"
+                },
+                {
+                    "date": 1649882413901,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,8 +47,10 @@\n   let [tab] = await chrome.tabs.query(queryOptions)\n   return tab\n }\n \n+console = chrome.extension.getBackgroundPage().console;\n+\n document\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n"
+                },
+                {
+                    "date": 1649882474866,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,6 +53,6 @@\n document\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n-    console.log(tab);\n-  })\n+\n+})\n"
+                },
+                {
+                    "date": 1649882480463,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,12 +47,12 @@\n   let [tab] = await chrome.tabs.query(queryOptions)\n   return tab\n }\n \n-console = chrome.extension.getBackgroundPage().console;\n+const console = chrome.extension.getBackgroundPage().console;\n \n document\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n-\n-})\n+    console.log(tab);\n+  })\n"
+                },
+                {
+                    "date": 1649882518323,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,10 +47,8 @@\n   let [tab] = await chrome.tabs.query(queryOptions)\n   return tab\n }\n \n-const console = chrome.extension.getBackgroundPage().console;\n-\n document\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n"
+                },
+                {
+                    "date": 1649882523823,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,6 +51,7 @@\n document\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n+    alert(tab)\n     console.log(tab);\n   })\n"
+                },
+                {
+                    "date": 1649882565896,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,7 +51,6 @@\n document\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n-    alert(tab)\n-    console.log(tab);\n+    alert(JSON.stringify(tab));\n   })\n"
+                },
+                {
+                    "date": 1649882612000,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,6 +51,6 @@\n document\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n-    alert(JSON.stringify(tab));\n+    alert(JSON.stringify(tab), , null, '\\t');\n   })\n"
+                },
+                {
+                    "date": 1649882706793,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,6 +51,6 @@\n document\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n-    alert(JSON.stringify(tab), , null, '\\t');\n+    alert(JSON.stringify(tab), null, 2)\n   })\n"
+                },
+                {
+                    "date": 1649882711937,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,7 +50,7 @@\n \n document\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n-    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n-    alert(JSON.stringify(tab), null, 2)\n+    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });\n+    alert(JSON.stringify(tab), null, 2);\n   })\n"
+                },
+                {
+                    "date": 1649882754302,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,6 +51,11 @@\n document\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });\n-    alert(JSON.stringify(tab), null, 2);\n-  })\n+    chrome.scripting.executeScript({\n+        target: { tabId: tab.id },\n+        function: async () => {\n+          console.log('This code is only active on teamblind.com.')\n+        },\n+      })\n+    })\n"
+                },
+                {
+                    "date": 1649882761368,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,8 +54,8 @@\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });\n     chrome.scripting.executeScript({\n         target: { tabId: tab.id },\n         function: async () => {\n-          console.log('This code is only active on teamblind.com.')\n+          console.log('This code is only active on teamblind.com.'tab)\n         },\n       })\n     })\n"
+                },
+                {
+                    "date": 1649882767656,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,8 +54,8 @@\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });\n     chrome.scripting.executeScript({\n         target: { tabId: tab.id },\n         function: async () => {\n-          console.log('This code is only active on teamblind.com.'tab)\n+          console.log(tab);\n         },\n       })\n     })\n"
+                },
+                {
+                    "date": 1649882776410,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,12 +50,12 @@\n \n document\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n-    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });\n+    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n     chrome.scripting.executeScript({\n-        target: { tabId: tab.id },\n-        function: async () => {\n-          console.log(tab);\n-        },\n-      })\n+      target: { tabId: tab.id },\n+      function: async () => {\n+        console.log(tab)\n+      },\n     })\n+  })\n"
+                },
+                {
+                    "date": 1649882814280,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,8 +54,8 @@\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n     chrome.scripting.executeScript({\n       target: { tabId: tab.id },\n       function: async () => {\n-        console.log(tab)\n+        console.log(tab);\n       },\n     })\n   })\n"
+                },
+                {
+                    "date": 1649882836776,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,8 +54,8 @@\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n     chrome.scripting.executeScript({\n       target: { tabId: tab.id },\n       function: async () => {\n-        console.log(tab);\n+        console.log(\"Hello\");\n       },\n     })\n   })\n"
+                },
+                {
+                    "date": 1649882855803,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,8 +54,8 @@\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n     chrome.scripting.executeScript({\n       target: { tabId: tab.id },\n       function: async () => {\n-        console.log(\"Hello\");\n+        console.log(\"Hello \" + tab.name);\n       },\n     })\n   })\n"
+                },
+                {
+                    "date": 1649882899625,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,8 +54,8 @@\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n     chrome.scripting.executeScript({\n       target: { tabId: tab.id },\n       function: async () => {\n-        console.log(\"Hello \" + tab.name);\n+        console.log(\"Hello \");\n       },\n     })\n   })\n"
+                },
+                {
+                    "date": 1649882915452,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,8 +54,8 @@\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n     chrome.scripting.executeScript({\n       target: { tabId: tab.id },\n       function: async () => {\n-        console.log(\"Hello \");\n+        console.log(\"Hello \" + tab.name);\n       },\n     })\n   })\n"
+                },
+                {
+                    "date": 1649883050048,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,8 +54,8 @@\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n     chrome.scripting.executeScript({\n       target: { tabId: tab.id },\n       function: async () => {\n-        console.log(\"Hello \" + tab.name);\n+        console.log(\"This code is onl\");\n       },\n     })\n   })\n"
+                },
+                {
+                    "date": 1649883055615,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,8 +54,8 @@\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n     chrome.scripting.executeScript({\n       target: { tabId: tab.id },\n       function: async () => {\n-        console.log(\"This code is onl\");\n+        console.log(\"This code is only active on github.com.\");\n       },\n     })\n   })\n"
+                },
+                {
+                    "date": 1649883061155,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,8 +51,9 @@\n document\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n+    \n     chrome.scripting.executeScript({\n       target: { tabId: tab.id },\n       function: async () => {\n         console.log(\"This code is only active on github.com.\");\n"
+                },
+                {
+                    "date": 1649883068643,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n document\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n-    \n+    if (tab.url.includes)\n     chrome.scripting.executeScript({\n       target: { tabId: tab.id },\n       function: async () => {\n         console.log(\"This code is only active on github.com.\");\n"
+                },
+                {
+                    "date": 1649883074841,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,12 +51,12 @@\n document\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n-    if (tab.url.includes)\n+    if (tab.url.includes(''))\n     chrome.scripting.executeScript({\n       target: { tabId: tab.id },\n       function: async () => {\n-        console.log(\"This code is only active on github.com.\");\n+        console.log('This code is only active on github.com.\");\n       },\n     })\n   })\n"
+                },
+                {
+                    "date": 1649883083095,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,12 +51,12 @@\n document\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n-    if (tab.url.includes(''))\n+    if (tab.url.includes('github.com'))\n     chrome.scripting.executeScript({\n       target: { tabId: tab.id },\n       function: async () => {\n-        console.log('This code is only active on github.com.\");\n+        console.log('This code is only active on github.com.');\n       },\n     })\n   })\n"
+                },
+                {
+                    "date": 1649883091381,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,13 @@\n document\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n-    if (tab.url.includes('github.com'))\n+    if (tab.url.includes('github.com')) {\n+\n+    } else {\n+        \n+    }\n     chrome.scripting.executeScript({\n       target: { tabId: tab.id },\n       function: async () => {\n         console.log('This code is only active on github.com.');\n"
+                },
+                {
+                    "date": 1649883097095,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,15 +52,13 @@\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n     if (tab.url.includes('github.com')) {\n-\n     } else {\n-        \n+      chrome.scripting.executeScript({\n+        target: { tabId: tab.id },\n+        function: async () => {\n+          console.log('This code is only active on github.com.')\n+        },\n+      })\n     }\n-    chrome.scripting.executeScript({\n-      target: { tabId: tab.id },\n-      function: async () => {\n-        console.log('This code is only active on github.com.');\n-      },\n-    })\n   })\n"
+                },
+                {
+                    "date": 1649883194710,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,8 +52,9 @@\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n     if (tab.url.includes('github.com')) {\n+        \n     } else {\n       chrome.scripting.executeScript({\n         target: { tabId: tab.id },\n         function: async () => {\n"
+                },
+                {
+                    "date": 1649883203232,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n     if (tab.url.includes('github.com')) {\n-        \n+        let\n     } else {\n       chrome.scripting.executeScript({\n         target: { tabId: tab.id },\n         function: async () => {\n"
+                },
+                {
+                    "date": 1649883214300,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n     if (tab.url.includes('github.com')) {\n-        let\n+        let repo\n     } else {\n       chrome.scripting.executeScript({\n         target: { tabId: tab.id },\n         function: async () => {\n"
+                },
+                {
+                    "date": 1649883219736,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n     if (tab.url.includes('github.com')) {\n-        let repo\n+        let repo = tab.ur\n     } else {\n       chrome.scripting.executeScript({\n         target: { tabId: tab.id },\n         function: async () => {\n"
+                },
+                {
+                    "date": 1649883237719,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n     if (tab.url.includes('github.com')) {\n-        let repo = tab.ur\n+        let repo = tab.url\n     } else {\n       chrome.scripting.executeScript({\n         target: { tabId: tab.id },\n         function: async () => {\n"
+                },
+                {
+                    "date": 1649883243675,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n     if (tab.url.includes('github.com')) {\n-        let repo = tab.url\n+        let repo = tab.url.repl\n     } else {\n       chrome.scripting.executeScript({\n         target: { tabId: tab.id },\n         function: async () => {\n"
+                },
+                {
+                    "date": 1649883248884,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n     if (tab.url.includes('github.com')) {\n-        let repo = tab.url.repl\n+        let repo = tab.url.replace('github.com',)\n     } else {\n       chrome.scripting.executeScript({\n         target: { tabId: tab.id },\n         function: async () => {\n"
+                },
+                {
+                    "date": 1649883262470,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n     if (tab.url.includes('github.com')) {\n-        let repo = tab.url.replace('github.com',)\n+        let repo = tab.url.replace('https://',)\n     } else {\n       chrome.scripting.executeScript({\n         target: { tabId: tab.id },\n         function: async () => {\n"
+                },
+                {
+                    "date": 1649883722842,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n     if (tab.url.includes('github.com')) {\n-        let repo = tab.url.replace('https://',)\n+        let username\n     } else {\n       chrome.scripting.executeScript({\n         target: { tabId: tab.id },\n         function: async () => {\n"
+                },
+                {
+                    "date": 1649883728610,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n     if (tab.url.includes('github.com')) {\n-        let username\n+        let usernames = tab.url.split('github.com')\n     } else {\n       chrome.scripting.executeScript({\n         target: { tabId: tab.id },\n         function: async () => {\n"
+                },
+                {
+                    "date": 1649883734734,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n     if (tab.url.includes('github.com')) {\n-        let usernames = tab.url.split('github.com')\n+        let username \n     } else {\n       chrome.scripting.executeScript({\n         target: { tabId: tab.id },\n         function: async () => {\n"
+                },
+                {
+                    "date": 1649883740890,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n     if (tab.url.includes('github.com')) {\n-        let username \n+        let username = tab.url.\n     } else {\n       chrome.scripting.executeScript({\n         target: { tabId: tab.id },\n         function: async () => {\n"
+                },
+                {
+                    "date": 1649883758122,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n     if (tab.url.includes('github.com')) {\n-        let username = tab.url.\n+        let username = tab.url.match(/github.com\\/([^/]+)/)\n     } else {\n       chrome.scripting.executeScript({\n         target: { tabId: tab.id },\n         function: async () => {\n"
+                },
+                {
+                    "date": 1649883763680,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,10 @@\n   .getElementById('OpenInSourceGraph')\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n     if (tab.url.includes('github.com')) {\n-        let username = tab.url.match(/github.com\\/([^/]+)/)\n+        let username = tab.url.match(/github.com\\/([^/]+)/);\n+        \n     } else {\n       chrome.scripting.executeScript({\n         target: { tabId: tab.id },\n         function: async () => {\n"
+                },
+                {
+                    "date": 1649883768718,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,10 @@\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n     if (tab.url.includes('github.com')) {\n         let username = tab.url.match(/github.com\\/([^/]+)/);\n-        \n+        if \n+\n     } else {\n       chrome.scripting.executeScript({\n         target: { tabId: tab.id },\n         function: async () => {\n"
+                },
+                {
+                    "date": 1649883776387,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,11 @@\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n     if (tab.url.includes('github.com')) {\n         let username = tab.url.match(/github.com\\/([^/]+)/);\n-        if \n+        if (!username) {} {\n+            ret\n+        }\n \n     } else {\n       chrome.scripting.executeScript({\n         target: { tabId: tab.id },\n"
+                },
+                {
+                    "date": 1649883784675,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,11 +54,13 @@\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n     if (tab.url.includes('github.com')) {\n         let username = tab.url.match(/github.com\\/([^/]+)/);\n         if (!username) {} {\n-            ret\n+            return;\n         }\n \n+        let file\n+\n     } else {\n       chrome.scripting.executeScript({\n         target: { tabId: tab.id },\n         function: async () => {\n"
+                },
+                {
+                    "date": 1649883789966,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,9 +57,9 @@\n         if (!username) {} {\n             return;\n         }\n \n-        let file\n+        let filePath = \n \n     } else {\n       chrome.scripting.executeScript({\n         target: { tabId: tab.id },\n"
+                },
+                {
+                    "date": 1649883801218,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,9 +57,9 @@\n         if (!username) {} {\n             return;\n         }\n \n-        let filePath = \n+        let path = tab.url.match()\n \n     } else {\n       chrome.scripting.executeScript({\n         target: { tabId: tab.id },\n"
+                },
+                {
+                    "date": 1649883812130,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,9 +57,9 @@\n         if (!username) {} {\n             return;\n         }\n \n-        let path = tab.url.match()\n+        let path = tab.url.match(/tree\\/[^/]+\\/(.+)/)\n \n     } else {\n       chrome.scripting.executeScript({\n         target: { tabId: tab.id },\n"
+                },
+                {
+                    "date": 1649883819194,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,9 +57,12 @@\n         if (!username) {} {\n             return;\n         }\n \n-        let path = tab.url.match(/tree\\/[^/]+\\/(.+)/)\n+        let path = tab.url.match(/tree\\/[^/]+\\/(.+)/);\n+        if (!path) {\n+            \n+        }\n \n     } else {\n       chrome.scripting.executeScript({\n         target: { tabId: tab.id },\n"
+                },
+                {
+                    "date": 1649883824310,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,15 +53,15 @@\n   .addEventListener('click', async () => {\n     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })\n     if (tab.url.includes('github.com')) {\n         let username = tab.url.match(/github.com\\/([^/]+)/);\n-        if (!username) {} {\n+        if (!username) {\n             return;\n         }\n \n         let path = tab.url.match(/tree\\/[^/]+\\/(.+)/);\n         if (!path) {\n-            \n+            return\n         }\n \n     } else {\n       chrome.scripting.executeScript({\n"
+                },
+                {
+                    "date": 1649883837306,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,11 +59,13 @@\n         }\n \n         let path = tab.url.match(/tree\\/[^/]+\\/(.+)/);\n         if (!path) {\n-            return\n+            return;\n         }\n \n+        let query\n+\n     } else {\n       chrome.scripting.executeScript({\n         target: { tabId: tab.id },\n         function: async () => {\n"
+                },
+                {
+                    "date": 1649883886835,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,9 +62,9 @@\n         if (!path) {\n             return;\n         }\n \n-        let query\n+        let query = []\n \n     } else {\n       chrome.scripting.executeScript({\n         target: { tabId: tab.id },\n"
+                },
+                {
+                    "date": 1649883893258,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,9 +62,10 @@\n         if (!path) {\n             return;\n         }\n \n-        let query = []\n+        let queryParams = [];\n+        \n \n     } else {\n       chrome.scripting.executeScript({\n         target: { tabId: tab.id },\n"
+                },
+                {
+                    "date": 1649883901088,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,9 +63,9 @@\n             return;\n         }\n \n         let queryParams = [];\n-        \n+        queryParams.push()\n \n     } else {\n       chrome.scripting.executeScript({\n         target: { tabId: tab.id },\n"
+                },
+                {
+                    "date": 1649883908265,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,9 +63,9 @@\n             return;\n         }\n \n         let queryParams = [];\n-        queryParams.push(`repo=\"\"`)\n+        queryParams.push(`repo=\"$\"`)\n \n     } else {\n       chrome.scripting.executeScript({\n         target: { tabId: tab.id },\n"
+                },
+                {
+                    "date": 1649886622414,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -64,9 +64,9 @@\n \n       let version = tab.url.match(/\\/(tree|blob)\\/([^/]+)/)\n       if (version) {\n         url += `@${version[2]}`\n-        url += \n+        url += ``\n       }\n \n       let path = tab.url.match(/\\/tree\\/[^/]+\\/(.+)/)\n       if (path) {\n"
+                }
+            ],
+            "date": 1649881609286,
+            "name": "Commit-0",
+            "content": "document.getElementById(\"runCode\").addEventListener('click', async () => {\n    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });\n\n    if (tab.url.includes(\"teamblind.com\")) {\n        chrome.scripting.executeScript({\n            target: { tabId: tab.id },\n            function: async () => {\n                let sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));\n\n                let findViewMoreBtn = () => {\n                    let buttons = [...document.getElementsByClassName(\"btn_more\")].filter((btn) => btn.innerText.includes(\"+ View more comments...\"));\n                    if (buttons.length != 1) {\n                        return null\n                    }\n                    return buttons[0]\n                }\n\n                console.log(\"Expanding comments...\");\n                let times = 0;\n                while (true) {\n                    let btn = findViewMoreBtn();\n                    if (btn == null) {\n                        break;\n                    }\n                    btn.click();\n                    times += 1;\n                    await sleep(2500);\n                }\n                console.log(`Finished expanding comments ${times} time(s)!`);\n            },\n        });\n    } else {\n        chrome.scripting.executeScript({\n            target: { tabId: tab.id },\n            function: async () => {\n                console.log(\"This code is only active on teamblind.com.\");\n            },\n        });\n    }\n});\n\n"
+        }
+    ]
+}

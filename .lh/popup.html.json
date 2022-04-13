@@ -1,0 +1,110 @@
+{
+    "sourceFile": "popup.html",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 23,
+            "patches": [
+                {
+                    "date": 1649882140610,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1649882162115,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,8 @@\n   <head>\n   </head>\n   <body>\n     <button id=\"runCode\">Run Code!</button>\n-    <button id=\"\"\n+    <button id=\"Source Graph\"\n     <script src=\"popup.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649882168962,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,8 @@\n   <head>\n   </head>\n   <body>\n     <button id=\"runCode\">Run Code!</button>\n-    <button id=\"Source Graph\"\n+    <button id=\"Source Graph\">Source Graph</button>\n     <script src=\"popup.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649882184147,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,8 @@\n   <head>\n   </head>\n   <body>\n     <button id=\"runCode\">Run Code!</button>\n-    <button id=\"Source Graph\">Source Graph</button>\n+    <button id=\"OpenInSourceGrap\">Open in Source Graph</button>\n     <script src=\"popup.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649885858653,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n   <head>\n   </head>\n   <body>\n     <button id=\"runCode\">Run Code!</button>\n-    <button id=\"OpenInSourceGrap\">Open in Source Graph</button>\n+    <button id=\"OpenInSourceGraph\">Open in Source Graph</button>\n+    \n     <script src=\"popup.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649885863878,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,7 @@\n   </head>\n   <body>\n     <button id=\"runCode\">Run Code!</button>\n     <button id=\"OpenInSourceGraph\">Open in Source Graph</button>\n-    \n     <script src=\"popup.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649885870918,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,11 @@\n   <head>\n   </head>\n   <body>\n     <button id=\"runCode\">Run Code!</button>\n+    <a>\n+      \n+    </a>\n     <button id=\"OpenInSourceGraph\">Open in Source Graph</button>\n     <script src=\"popup.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649885876843,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,11 +3,10 @@\n   <head>\n   </head>\n   <body>\n     <button id=\"runCode\">Run Code!</button>\n-    <a>\n-      \n+    <a id=\"\">\n+      <button id=\"OpenInSourceGraph\">Open in Source Graph</button>\n     </a>\n-    <button id=\"OpenInSourceGraph\">Open in Source Graph</button>\n     <script src=\"popup.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649885883373,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n   <head>\n   </head>\n   <body>\n     <button id=\"runCode\">Run Code!</button>\n-    <a id=\"\">\n+    <a id=\"OpenInSourceGraphLink\">\n       <button id=\"OpenInSourceGraph\">Open in Source Graph</button>\n     </a>\n     <script src=\"popup.js\"></script>\n   </body>\n"
+                },
+                {
+                    "date": 1649886014338,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,7 @@\n   <body>\n     <button id=\"runCode\">Run Code!</button>\n     <a id=\"OpenInSourceGraphLink\">\n       <button id=\"OpenInSourceGraph\">Open in Source Graph</button>\n-    </a>\n     <script src=\"popup.js\"></script>\n   </body>\n </html>\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1649887324513,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,9 @@\n <!DOCTYPE html>\n <html>\n-  <head>\n-  </head>\n+  <head></head>\n   <body>\n-    <button id=\"runCode\">Run Code!</button>\n-    <a id=\"OpenInSourceGraphLink\">\n-      <button id=\"OpenInSourceGraph\">Open in Source Graph</button>\n+    <button id=\"ExpandBlindComments\">Run Code!</button>\n+    <button id=\"OpenInSourceGraph\">Open in Source Graph</button>\n\\ No newline at end of file\n     <script src=\"popup.js\"></script>\n   </body>\n-</html>\n+</html>\n"
+                },
+                {
+                    "date": 1649887329680,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,5 +5,5 @@\n     <button id=\"ExpandBlindComments\">Run Code!</button>\n     <button id=\"OpenInSourceGraph\">Open in Source Graph</button>\n     <script src=\"popup.js\"></script>\n   </body>\n-</html>\n\\ No newline at end of file\n+</html>\n"
+                },
+                {
+                    "date": 1649887335743,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n <!DOCTYPE html>\n <html>\n   <head></head>\n   <body>\n-    <button id=\"ExpandBlindComments\">Run Code!</button>\n+    <button id=\"ExpandBlindComments\">Expand BlindComments</button>\n     <button id=\"OpenInSourceGraph\">Open in Source Graph</button>\n     <script src=\"popup.js\"></script>\n   </body>\n </html>\n"
+                },
+                {
+                    "date": 1649887683532,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n <!DOCTYPE html>\n-<html>\n+<htmlstyle=\"min-width:600px;>\n   <head></head>\n   <body>\n-    <button id=\"ExpandBlindComments\">Expand BlindComments</button>\n+    <button id=\"ExpandBlindComments\">Expand Blind Comments</button>\n     <button id=\"OpenInSourceGraph\">Open in Source Graph</button>\n     <script src=\"popup.js\"></script>\n   </body>\n </html>\n"
+                },
+                {
+                    "date": 1649887695531,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n <!DOCTYPE html>\n-<htmlstyle=\"min-width:600px;>\n+<html style=\"min-width:600px;\"\">\n   <head></head>\n   <body>\n     <button id=\"ExpandBlindComments\">Expand Blind Comments</button>\n     <button id=\"OpenInSourceGraph\">Open in Source Graph</button>\n"
+                },
+                {
+                    "date": 1649887715338,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,10 @@\n <!DOCTYPE html>\n-<html style=\"min-width:600px;\"\">\n+<html style=\"min-width:600px;\">\n   <head></head>\n   <body>\n     <button id=\"ExpandBlindComments\">Expand Blind Comments</button>\n+    \n     <button id=\"OpenInSourceGraph\">Open in Source Graph</button>\n     <script src=\"popup.js\"></script>\n   </body>\n </html>\n"
+                },
+                {
+                    "date": 1649887722109,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n <html style=\"min-width:600px;\">\n   <head></head>\n   <body>\n     <button id=\"ExpandBlindComments\">Expand Blind Comments</button>\n-    \n+    <br/>\n     <button id=\"OpenInSourceGraph\">Open in Source Graph</button>\n     <script src=\"popup.js\"></script>\n   </body>\n </html>\n"
+                },
+                {
+                    "date": 1649887800121,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,11 @@\n <!DOCTYPE html>\n <html style=\"min-width:600px;\">\n-  <head></head>\n+  <head>\n+    <link rel=\"stylesheet\" href=\"styles.css\">\n+\n+\n+  </head>\n   <body>\n     <button id=\"ExpandBlindComments\">Expand Blind Comments</button>\n     <br/>\n     <button id=\"OpenInSourceGraph\">Open in Source Graph</button>\n"
+                },
+                {
+                    "date": 1649887809448,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,8 @@\n <!DOCTYPE html>\n-<html style=\"min-width:600px;\">\n+<html\">\n   <head>\n-    <link rel=\"stylesheet\" href=\"styles.css\">\n-\n-\n+    <link rel=\"stylesheet\" href=\"popup.css\">\n   </head>\n   <body>\n     <button id=\"ExpandBlindComments\">Expand Blind Comments</button>\n     <br/>\n"
+                },
+                {
+                    "date": 1649887856747,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n   <head>\n     <link rel=\"stylesheet\" href=\"popup.css\">\n   </head>\n   <body>\n-    <button id=\"ExpandBlindComments\">Expand Blind Comments</button>\n+    <button id=\"ExpandBlindComments\" cla>Expand Blind Comments</button>\n     <br/>\n     <button id=\"OpenInSourceGraph\">Open in Source Graph</button>\n     <script src=\"popup.js\"></script>\n   </body>\n"
+                },
+                {
+                    "date": 1649887863280,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n   <head>\n     <link rel=\"stylesheet\" href=\"popup.css\">\n   </head>\n   <body>\n-    <button id=\"ExpandBlindComments\" cla>Expand Blind Comments</button>\n+    <button id=\"ExpandBlindComments\" class=\"block\">Expand Blind Comments</button>\n     <br/>\n     <button id=\"OpenInSourceGraph\">Open in Source Graph</button>\n     <script src=\"popup.js\"></script>\n   </body>\n"
+                },
+                {
+                    "date": 1649887871755,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,8 @@\n   </head>\n   <body>\n     <button id=\"ExpandBlindComments\" class=\"block\">Expand Blind Comments</button>\n     <br/>\n-    <button id=\"OpenInSourceGraph\">Open in Source Graph</button>\n+    <button id=\"OpenInSourceGraph\" class=\"block\">Open in Source Graph</button>\n     <script src=\"popup.js\"></script>\n   </body>\n </html>\n"
+                },
+                {
+                    "date": 1649887876966,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,8 @@\n     <link rel=\"stylesheet\" href=\"popup.css\">\n   </head>\n   <body>\n     <button id=\"ExpandBlindComments\" class=\"block\">Expand Blind Comments</button>\n-    <br/>\n     <button id=\"OpenInSourceGraph\" class=\"block\">Open in Source Graph</button>\n     <script src=\"popup.js\"></script>\n   </body>\n </html>\n"
+                },
+                {
+                    "date": 1649887895911,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,10 @@\n     <link rel=\"stylesheet\" href=\"popup.css\">\n   </head>\n   <body>\n     <button id=\"ExpandBlindComments\" class=\"block\">Expand Blind Comments</button>\n+    <br/>\n+    \n     <button id=\"OpenInSourceGraph\" class=\"block\">Open in Source Graph</button>\n     <script src=\"popup.js\"></script>\n   </body>\n </html>\n"
+                }
+            ],
+            "date": 1649882140610,
+            "name": "Commit-0",
+            "content": "<!DOCTYPE html>\n<html>\n  <head>\n  </head>\n  <body>\n    <button id=\"runCode\">Run Code!</button>\n    <button id=\"\"\n    <script src=\"popup.js\"></script>\n  </body>\n</html>"
+        }
+    ]
+}
