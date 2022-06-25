@@ -43,6 +43,7 @@ document
   .getElementById('OpenInSourceGraph')
   .addEventListener('click', async () => {
     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
+
     if (tab.url.includes('https://github.com')) {
       let url = 'https://sourcegraph.com/'
 
@@ -69,5 +70,31 @@ document
       }
     } else {
       alert('This code is only active on github.com.')
+    }
+  })
+
+document
+  .getElementById('SwitchLanguage')
+  .addEventListener('click', async () => {
+    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
+
+    if (tab.url.includes('https://www.dragonball-multiverse.com')) {
+      let [_, language, remaining] = tab.url.match(
+        /dragonball-multiverse.com\/([a-z]+)\/(.+)/,
+      )
+
+      if (language == 'en') {
+        chrome.tabs.create({
+          url: `https://www.dragonball-multiverse.com/de/${remaining}`,
+        })
+      } else if (language == 'de') {
+        chrome.tabs.create({
+          url: `https://www.dragonball-multiverse.com/en/${remaining}`,
+        })
+      } else {
+        alert(`This code doesn't support ${language} (only en <=> de)`)
+      }
+    } else {
+      alert('This code is only active on dragonball-multiverse.com.')
     }
   })
