@@ -98,3 +98,25 @@ document
       alert('This code is only active on dragonball-multiverse.com.')
     }
   })
+
+document.getElementById('ToggleAnswer').addEventListener('click', async () => {
+  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
+
+  if (tab.url.includes('https://www.einbuergerungstest-online.de/fragen/')) {
+    chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      function: async () => {
+        let greenClasses = ['bg-green-100', 'dark:bg-green-900', 'shadow']
+        document.querySelectorAll('span.absolute.left-2').forEach((e) => {
+          if (e.style.visibility === 'hidden') {
+            e.parentElement.classList.add(...greenClasses)
+            e.style.visibility = 'visible'
+          } else {
+            e.parentElement.classList.remove(...greenClasses)
+            e.style.visibility = 'hidden'
+          }
+        })
+      },
+    })
+  }
+})
