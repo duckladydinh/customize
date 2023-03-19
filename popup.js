@@ -120,3 +120,26 @@ document.getElementById('ToggleAnswer').addEventListener('click', async () => {
     })
   }
 })
+
+document.getElementById('RemoveBanner').addEventListener('click', async () => {
+  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
+
+  if (tab.url.includes('https://www.thelocal.de/')) {
+    chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      function: async () => {
+        let bannerClasses = [
+          'tp-active',
+          'tp-backdrop',
+          'tp-modal',
+          'tp-modal-open',
+        ]
+        for (bannerClass of bannerClasses) {
+          for (e of document.getElementsByClassName(bannerClass)) {
+            e.classList.remove(bannerClass)
+          }
+        }
+      },
+    })
+  }
+})
