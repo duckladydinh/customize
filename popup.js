@@ -118,6 +118,25 @@ document.getElementById('ToggleAnswer').addEventListener('click', async () => {
         })
       },
     })
+  } else if (tab.url.includes('https://www.einbuergerungstest-online.eu/fragen/')) {
+    chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      function: async () => {
+        let correctAnswerClass = 'question-answer-right'
+        let incorrectAnswerClass = `${correctAnswerClass}-hidden`
+        let correctAnswers = document.querySelectorAll(`span.${correctAnswerClass}`)
+        if (correctAnswers.length > 0) {
+          correctAnswers.forEach(e => {
+            e.classList.replace(correctAnswerClass, incorrectAnswerClass)
+          })
+        } else {
+          incorrectAnswers = document.querySelectorAll(`span.${incorrectAnswerClass}`)
+          incorrectAnswers.forEach(e => {
+            e.classList.replace(incorrectAnswerClass, correctAnswerClass)
+          })
+        }
+      },
+    })
   }
 })
 
