@@ -107,36 +107,64 @@ document.getElementById('ToggleAnswer').addEventListener('click', async () => {
       target: { tabId: tab.id },
       function: async () => {
         let greenClasses = ['bg-green-100', 'dark:bg-green-900', 'shadow']
+
+        // Remove all answers.
         document.querySelectorAll('span.absolute.left-2').forEach((e) => {
-          if (e.style.visibility === 'hidden') {
-            e.parentElement.classList.add(...greenClasses)
-            e.style.visibility = 'visible'
-          } else {
-            e.parentElement.classList.remove(...greenClasses)
-            e.style.visibility = 'hidden'
-          }
+          e.parentElement.classList.remove(...greenClasses)
+          e.style.visibility = 'hidden'
         })
+
+        // Add checkboxes.
+        document
+          .querySelectorAll('span.p-2.pl-10.w-auto.relative')
+          .forEach((e) => {
+            // Add exactly 1 checkbox.
+            const firstChild = e.firstElementChild
+            if (
+              firstChild &&
+              firstChild.nodeName === 'INPUT' &&
+              firstChild.type === 'checkbox'
+            ) {
+              e.removeChild(firstChild)
+            }
+
+            const checkbox = document.createElement('input')
+            checkbox.type = 'checkbox'
+            checkbox.classList.add('absolute')
+            checkbox.classList.add('left-2')
+            e.prepend(checkbox)
+
+            // Vertically center the checkbox.
+            e.style.display = 'flex'
+            e.style.alignItems = 'center'
+
+            // Configure checkbox behavior.
+            checkbox.addEventListener('change', () => {
+              const correctAnswer = checkbox.nextElementSibling
+              if (checkbox.checked) {
+                // Disable other related checkboxes.
+                e.parentElement.parentElement
+                  .querySelectorAll('input')
+                  .forEach((box) => {
+                    if (box != checkbox) {
+                      box.checked = false
+                    }
+                    // Unhighlight anwer.
+                    box.parentElement.classList.remove(...greenClasses)
+                  })
+                // Highlight answer.
+                if (correctAnswer) {
+                  e.classList.add(...greenClasses)
+                }
+              }
+            })
+          })
       },
     })
-  } else if (tab.url.includes('https://www.einbuergerungstest-online.eu/fragen/')) {
-    chrome.scripting.executeScript({
-      target: { tabId: tab.id },
-      function: async () => {
-        let correctAnswerClass = 'question-answer-right'
-        let incorrectAnswerClass = `${correctAnswerClass}-hidden`
-        let correctAnswers = document.querySelectorAll(`span.${correctAnswerClass}`)
-        if (correctAnswers.length > 0) {
-          correctAnswers.forEach(e => {
-            e.classList.replace(correctAnswerClass, incorrectAnswerClass)
-          })
-        } else {
-          incorrectAnswers = document.querySelectorAll(`span.${incorrectAnswerClass}`)
-          incorrectAnswers.forEach(e => {
-            e.classList.replace(incorrectAnswerClass, correctAnswerClass)
-          })
-        }
-      },
-    })
+  } else {
+    alert(
+      'This script only works for https://www.einbuergerungstest-online.de/fragen/ (German site, not EU one)',
+    )
   }
 })
 
