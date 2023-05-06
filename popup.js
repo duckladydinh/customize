@@ -141,21 +141,19 @@ document.getElementById('ToggleAnswer').addEventListener('click', async () => {
             // Configure checkbox behavior.
             checkbox.addEventListener('change', () => {
               const correctAnswer = checkbox.nextElementSibling
-              if (checkbox.checked) {
-                // Disable other related checkboxes.
-                e.parentElement.parentElement
-                  .querySelectorAll('input')
-                  .forEach((box) => {
-                    if (box != checkbox) {
-                      box.checked = false
-                    }
-                    // Unhighlight anwer.
-                    box.parentElement.classList.remove(...greenClasses)
-                  })
-                // Highlight answer.
-                if (correctAnswer) {
-                  e.classList.add(...greenClasses)
-                }
+              // Disable other related checkboxes.
+              e.parentElement.parentElement
+                .querySelectorAll('input')
+                .forEach((box) => {
+                  if (box != checkbox) {
+                    box.checked = false
+                  }
+                  // Unhighlight anwer.
+                  box.parentElement.classList.remove(...greenClasses)
+                })
+              // Highlight answer.
+              if (checkbox.checked && correctAnswer) {
+                e.classList.add(...greenClasses)
               }
             })
           })
