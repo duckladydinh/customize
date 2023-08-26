@@ -169,7 +169,7 @@ document.getElementById('ToggleAnswer').addEventListener('click', async () => {
 document.getElementById('RemoveBanner').addEventListener('click', async () => {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
 
-  if (tab.url.includes('https://www.thelocal.de/')) {
+  if (tab.url.includes('thelocal.de')) {
     chrome.scripting.executeScript({
       target: { tabId: tab.id },
       function: async () => {
@@ -186,5 +186,19 @@ document.getElementById('RemoveBanner').addEventListener('click', async () => {
         }
       },
     })
+  } else if (tab.url.includes('quora.com')) {
+    chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      function: async () => {
+        document.querySelectorAll('[class*="blocking_wall"]')
+          .forEach((e) => e.remove())
+        document.querySelectorAll('[style*="filter"]')
+          .forEach((e) => e.style.removeProperty('filter'))
+      },
+    })
+  } else {
+    alert(
+      'This current website is not yet supported',
+    )
   }
 })
