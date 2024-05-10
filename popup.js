@@ -178,9 +178,10 @@ document.getElementById('RemoveBanner').addEventListener('click', async () => {
           'tp-backdrop',
           'tp-modal',
           'tp-modal-open',
+          'piano-hide',
         ]
         for (bannerClass of bannerClasses) {
-          for (e of document.getElementsByClassName(bannerClass)) {
+          for (e of Array.from(document.getElementsByClassName(bannerClass))) {
             e.classList.remove(bannerClass)
           }
         }
