@@ -6,8 +6,19 @@
   "action": {
     "default_popup": "popup.html"
   },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "host_permissions": [
+    "http://*/*"
+  ],
   "icons": {
     "128": "customize_icon.png"
   },
-  "permissions": ["tabs", "activeTab", "scripting"]
+  "permissions": [
+    "activeTab",
+    "declarativeNetRequest",
+    "scripting",
+    "tabs"
+  ]
 }
