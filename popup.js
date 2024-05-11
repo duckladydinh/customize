@@ -12,8 +12,8 @@ document
 
           let findViewMoreBtn = () => {
             let buttons = [
-              ...document.getElementsByClassName('btn_more'),
-            ].filter((btn) => btn.innerText.includes('+ View more comments...'))
+              ...document.querySelectorAll('button'),
+            ].filter((btn) => btn.innerText.includes('View more comments'))
             if (buttons.length != 1) {
               return null
             }
@@ -195,6 +195,16 @@ document.getElementById('RemoveBanner').addEventListener('click', async () => {
           .forEach((e) => e.remove())
         document.querySelectorAll('[style*="filter"]')
           .forEach((e) => e.style.removeProperty('filter'))
+      },
+    })
+  } else if (tab.url.includes('teamblind.com')) {
+    chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      function: async () => {
+        document.querySelectorAll('.shadow-2xl').forEach(e => e.remove());
+        document.querySelectorAll('.backdrop-blur-sm').forEach(e => e.remove());
+        document.querySelectorAll('.absolute.flex.h-full.w-full').forEach(e => e.remove());
+        document.querySelectorAll('[style*="overflow-y"]').forEach(e => e.style.overflowY = 'visible');
       },
     })
   } else {
