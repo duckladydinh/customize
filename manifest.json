@@ -10,13 +10,15 @@
     "service_worker": "background.js"
   },
   "host_permissions": [
-    "http://*/*"
+    "http://*/*",
+    "https://*/*"
   ],
   "icons": {
     "128": "customize_icon.png"
   },
   "permissions": [
     "activeTab",
+    "browsingData",
     "declarativeNetRequest",
     "scripting",
     "tabs"

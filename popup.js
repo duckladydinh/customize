@@ -1,4 +1,30 @@
 document
+  .getElementById('ClearCookies')
+  .addEventListener('click', async () => {
+    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
+
+    const url = new URL(tab.url);
+    const origin = url.origin;
+
+    chrome.browsingData.remove({
+      "origins": [origin],
+    }, {
+      "cookies": true,
+      "localStorage": true,
+      "cache": true
+    }, () => {
+      chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        function: () => {
+          if (confirm(`Cookies and Site Data cleared for '${origin}'. Do you want to reload?`)) {
+            location.reload();
+          }
+        }
+      });
+    });
+  })
+
+document
   .getElementById('ExpandBlindComments')
   .addEventListener('click', async () => {
     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
