@@ -9,11 +9,11 @@ const RULES = [
   },
   {
     from: "mk",
-    dest: "https://m.manganelo.com/wwww",
+    dest: "https://mangakakalot.com",
   },
   {
     from: "mg",
-    dest: "https://truyenqqviet.com",
+    dest: "https://truyenqqto.com",
   },
   {
     from: "mf",
