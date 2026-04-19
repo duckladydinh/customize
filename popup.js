@@ -16,7 +16,7 @@ document.getElementById("ClearCookies").addEventListener("click", async () => {
     () => {
       chrome.scripting.executeScript({
         target: { tabId: tab.id },
-        function: () => {
+        func: () => {
           if (
             confirm(
               `Cookies and Site Data cleared for '${origin}'. Do you want to reload?`,
@@ -41,7 +41,7 @@ document
     if (tab.url.includes("teamblind.com")) {
       chrome.scripting.executeScript({
         target: { tabId: tab.id },
-        function: async () => {
+        func: async () => {
           let sleep = (delay) =>
             new Promise((resolve) => setTimeout(resolve, delay));
 
@@ -146,7 +146,7 @@ document.getElementById("ToggleAnswer").addEventListener("click", async () => {
   if (tab.url.includes("https://www.einbuergerungstest-online.de/fragen/")) {
     chrome.scripting.executeScript({
       target: { tabId: tab.id },
-      function: async () => {
+      func: async () => {
         let greenClasses = ["bg-green-100", "dark:bg-green-900", "shadow"];
 
         // Remove all answers.
@@ -211,7 +211,7 @@ document.getElementById("RemoveBanner").addEventListener("click", async () => {
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
-    function: async () => {
+    func: async () => {
       const forbidden_classes = ["blocking", "blur"];
       const fixed_positions = new Set(["absolute", "fixed"]);
       document.querySelectorAll("*").forEach((e) => {
