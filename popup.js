@@ -1,5 +1,5 @@
 document.getElementById("ClearCookies").addEventListener("click", async () => {
-  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
   const url = new URL(tab.url);
   const origin = url.origin;
@@ -19,21 +19,24 @@ document.getElementById("ClearCookies").addEventListener("click", async () => {
         function: () => {
           if (
             confirm(
-              `Cookies and Site Data cleared for '${origin}'. Do you want to reload?`
+              `Cookies and Site Data cleared for '${origin}'. Do you want to reload?`,
             )
           ) {
             location.reload();
           }
         },
       });
-    }
+    },
   );
 });
 
 document
   .getElementById("ExpandBlindComments")
   .addEventListener("click", async () => {
-    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    const [tab] = await chrome.tabs.query({
+      active: true,
+      currentWindow: true,
+    });
 
     if (tab.url.includes("teamblind.com")) {
       chrome.scripting.executeScript({
@@ -44,7 +47,7 @@ document
 
           let findViewMoreBtn = () => {
             let buttons = [...document.querySelectorAll("button")].filter(
-              (btn) => btn.innerText.includes("View more comments")
+              (btn) => btn.innerText.includes("View more comments"),
             );
             if (buttons.length != 1) {
               return null;
@@ -74,7 +77,10 @@ document
 document
   .getElementById("OpenInSourceGraph")
   .addEventListener("click", async () => {
-    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    const [tab] = await chrome.tabs.query({
+      active: true,
+      currentWindow: true,
+    });
 
     if (tab.url.includes("https://github.com")) {
       let url = "https://sourcegraph.com/";
@@ -108,11 +114,14 @@ document
 document
   .getElementById("SwitchLanguage")
   .addEventListener("click", async () => {
-    let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    const [tab] = await chrome.tabs.query({
+      active: true,
+      currentWindow: true,
+    });
 
     if (tab.url.includes("https://www.dragonball-multiverse.com")) {
       let [_, language, remaining] = tab.url.match(
-        /dragonball-multiverse.com\/([a-z]+)\/(.+)/
+        /dragonball-multiverse.com\/([a-z]+)\/(.+)/,
       );
 
       if (language == "en") {
@@ -132,7 +141,7 @@ document
   });
 
 document.getElementById("ToggleAnswer").addEventListener("click", async () => {
-  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
   if (tab.url.includes("https://www.einbuergerungstest-online.de/fragen/")) {
     chrome.scripting.executeScript({
@@ -193,13 +202,13 @@ document.getElementById("ToggleAnswer").addEventListener("click", async () => {
     });
   } else {
     alert(
-      "This script only works for https://www.einbuergerungstest-online.de/fragen/ (German site, not EU one)"
+      "This script only works for https://www.einbuergerungstest-online.de/fragen/ (German site, not EU one)",
     );
   }
 });
 
 document.getElementById("RemoveBanner").addEventListener("click", async () => {
-  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
     function: async () => {
@@ -225,6 +234,110 @@ document.getElementById("RemoveBanner").addEventListener("click", async () => {
           e.style.setProperty("overflow", "auto", "important");
         }
       });
+    },
+  });
+});
+
+document.getElementById("AddNavigator").addEventListener("click", async () => {
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    func: async () => {
+      document.body.style.margin = "0";
+      document.body.style.padding = "0";
+
+      const PAGE_SELECTOR = ".page-chapter";
+      const pages = document.querySelectorAll(PAGE_SELECTOR);
+      if (pages.length === 0) {
+        alert(`Found no pages with selector '${PAGE_SELECTOR}'`);
+      }
+
+      let parent = pages[0].parentElement;
+      while (parent) {
+        Object.assign(parent.style, {
+          width: "100%",
+          maxWidth: "100%",
+          margin: "0",
+          padding: "0",
+        });
+        parent = parent.parentElement;
+      }
+
+      let pageIndex = parseInt(localStorage.getItem(location.pathname)) || 0;
+      const updateVisibility = () => {
+        localStorage.setItem(location.pathname, pageIndex);
+        for (const [index, page] of pages.entries()) {
+          const isVisible = index >= pageIndex && index < pageIndex + 2;
+          if (isVisible) {
+            Object.assign(page.style, {
+              display: "block",
+              float: "left",
+              width: "calc(50% - 2px)",
+              margin: "0 1px",
+              padding: "0",
+              boxSizing: "border-box",
+            });
+          } else {
+            page.style.display = "none";
+          }
+        }
+        const currentEnd = Math.min(pageIndex + 2, pages.length);
+        pageTracker.textContent = `${pageIndex + 1}-${currentEnd} / ${pages.length}`;
+      };
+
+      const navContainer = document.createElement("div");
+      Object.assign(navContainer.style, {
+        position: "fixed",
+        bottom: "5%",
+        left: "50%",
+        transform: "translateX(-50%)",
+        zIndex: "9999",
+        display: "flex",
+        alignItems: "center",
+      });
+
+      const createButton = (label, onClick) => {
+        const btn = document.createElement("button");
+        btn.textContent = label;
+        Object.assign(btn.style, {
+          fontSize: "1.5rem",
+          padding: "0.75rem 1.5rem",
+          background: "rgba(0, 123, 255, 1)",
+          color: "rgba(255, 255, 255, 1)",
+          border: "none",
+          borderRadius: "8px",
+          cursor: "pointer",
+          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)",
+        });
+        btn.onclick = onClick;
+        return btn;
+      };
+
+      const prevButton = createButton("Prev", () => {
+        pageIndex = Math.max(0, pageIndex - 2);
+        updateVisibility();
+      });
+
+      const nextButton = createButton("Next", () => {
+        if (pageIndex + 2 < pages.length) {
+          pageIndex += 2;
+        }
+        updateVisibility();
+      });
+
+      const pageTracker = document.createElement("div");
+      Object.assign(pageTracker.style, {
+        fontSize: "1.5rem",
+        margin: "0 15px",
+        padding: "0.5rem 1rem",
+        background: "rgba(255, 255, 255, 1)",
+        borderRadius: "8px",
+        boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)",
+      });
+
+      navContainer.append(prevButton, pageTracker, nextButton);
+      document.body.appendChild(navContainer);
+      updateVisibility();
     },
   });
 });
