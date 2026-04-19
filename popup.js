@@ -283,6 +283,10 @@ document.getElementById("AddNavigator").addEventListener("click", async () => {
         }
         const currentEnd = Math.min(pageIndex + 2, pages.length);
         pageTracker.textContent = `${pageIndex + 1}-${currentEnd} / ${pages.length}`;
+        pages[pageIndex].scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
       };
 
       const navContainer = document.createElement("div");
